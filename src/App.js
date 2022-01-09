@@ -246,18 +246,23 @@ const products = [
     }
   }
 ];
-const categories = products.map(p => p.category).filter((value, index, array) => array.indexOf(value) === index);
+const categories = ["All", ...products.map(p => p.category).filter((value, index, array) => array.indexOf(value) === index)];
 function App() {
-  const [selectValue, setSelectValue] = useState(categories[0]);
+  const [productfilterd, setproductfilterd] = useState(products);
 
   const selectVal = (val) => {
-    setSelectValue(val)
+    if (val === "All") {
+      setproductfilterd(products)
+    } else {
+      setproductfilterd(products.filter(product => product.category === val))
+    }
   };
+
   return (
     <div className="App">
 
       <Header categories={categories} selectVal={selectVal} />
-      <Products products={products.filter(product => product.category === selectValue)} />
+      <Products products={productfilterd} />
     </div>
   );
 }
