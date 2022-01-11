@@ -251,17 +251,17 @@ function App() {
   const [productfilterd, setproductfilterd] = useState(products);
 
   const selectVal = (val) => {
-    if (val === "All") {
-      setproductfilterd(products)
-    } else {
-      setproductfilterd(products.filter(product => product.category === val))
-    }
+    val === "All" ? setproductfilterd(products) : setproductfilterd(products.filter(product => product.category === val))
   };
 
+
+  const sortAfterSelect = (val) => {
+    setproductfilterd(productfilterd.sort((a, b) => a[val] - b[val]))
+  }
   return (
     <div className="App">
 
-      <Header categories={categories} selectVal={selectVal} />
+      <Header categories={categories} selectVal={selectVal} sortAfterSelect={sortAfterSelect} />
       <Products products={productfilterd} />
     </div>
   );

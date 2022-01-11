@@ -115,7 +115,7 @@ time,
 mark,
 audio,
 video {
-  margin: 0;
+  margin: 5px;
   padding: 0;
   border: 0;
   outline: 0;

@@ -1,10 +1,10 @@
 import "./Header.css"
 
-const Header = ({ categories, selectVal }) => {
+const Header = ({ categories, selectVal, sortAfterSelect }) => {
     console.log(categories);
     return (
         <nav className="product-filter">
-            <h1>Jackets</h1>
+            <h1>Welcome to my shop</h1>
 
             <div className="sort">
                 <div className="collection-sort">
@@ -16,12 +16,12 @@ const Header = ({ categories, selectVal }) => {
 
                 <div className="collection-sort">
                     <label>Sort by:</label>
-                    <select>
+                    <select onChange={(e) => sortAfterSelect(e.target.value)}>
                         <option value="/">Featured</option>
                         <option value="/">Best Selling</option>
                         <option value="/">Alphabetically, A-Z</option>
                         <option value="/">Alphabetically, Z-A</option>
-                        <option value="/">Price, low to high</option>
+                        <option value="price">Price, low to high</option>
                         <option value="/">Price, high to low</option>
                         <option value="/">Date, new to old</option>
                         <option value="/">Date, old to new</option>
