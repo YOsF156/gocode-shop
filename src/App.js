@@ -11,27 +11,27 @@ function App() {
   const [productfilterd, setproductfilterd] = useState([""]);
   const [cartList, setCartList] = useState([""])
   const categories = ["All", ...products.map(p => p.category).filter((value, index, array) => array.indexOf(value) === index)]
-  const val = useRef(1)
 
-  function updateCart(id) {
-    if (products[0].counter === undefined) {
-      setproducts(products.map(product => product.counter ? product : product.counter = 1))
-      console.log(products);
-    }
-    setproducts(products.map(product => (product.id === id) ? { ...product, counter: (product.counter + 1) } : product));
+
+  function updateCart(add, id) {
+
+    setproducts(products.map(product => {
+      add && product.id === id ? product.counter++ : !add && product.id === id && product.counter--
+      return product
+    }))
     console.log(products);
+    setCartList(products.filter(product => product.counter > 0));
 
   }
 
-  useEffect(() => {
-    setCartList(products.filter(product => product.counter > 0))
-    console.log(cartList);
-  }, [products])
+
+
 
   useEffect(() => {
     fetch(`https://fakestoreapi.com/products/`)
       .then((res) => res.json())
       .then((data) => {
+        data.map(product => { product.counter = 0; return product })
         setproducts(data)
         setproductfilterd(data)
       })
@@ -50,7 +50,7 @@ function App() {
   return (
     <div className="App">
       <Header categories={categories} selectVal={selectVal} sortAfterSelect={sortAfterSelect} />
-      <Cart cartList={cartList} />
+      <Cart cartList={cartList} updateCart={updateCart} />
       <Products products={productfilterd} updateCart={updateCart} />
     </div>
   );
