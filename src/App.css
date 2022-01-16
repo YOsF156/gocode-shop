@@ -181,8 +181,8 @@ table {
 
 body {
   margin: 0 auto;
-  width: 90%;
-  max-width: 1240px;
+  width: 100%;
+  /* max-width: 1240px; */
   font-family: "Roboto", sans-serif;
   background-color: #f6f6f6;
 }
@@ -203,4 +203,8 @@ h5 {
 h6 {
   color: #666;
   font-size: 14px;
+}
+
+.shopping-aria{
+  display: flex;
 }

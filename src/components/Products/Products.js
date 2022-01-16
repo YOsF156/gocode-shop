@@ -3,8 +3,8 @@ import "./Products.css";
 
 const Products = ({ products, updateCart }) => {
     return (<section className="products">
-        {products.map(({ id, image, title, price }) => (
-            <Product key={id} img={image} title={title} price={price} id={id} updateCart={updateCart} />
+        {products.map(({ id, image, title, price, counter }) => (
+            <Product key={id} img={image} title={title} price={price} id={id} counter={counter} updateCart={updateCart} />
         ))}
     </section>)
 };

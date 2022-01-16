@@ -9,14 +9,14 @@ import Cart from './components/cart/Cart';
 function App() {
   const [products, setproducts] = useState([""]);
   const [productfilterd, setproductfilterd] = useState([""]);
-  const [cartList, setCartList] = useState([""])
+  const [cartList, setCartList] = useState([])
   const categories = ["All", ...products.map(p => p.category).filter((value, index, array) => array.indexOf(value) === index)]
 
 
   function updateCart(add, id) {
 
     setproducts(products.map(product => {
-      add && product.id === id ? product.counter++ : !add && product.id === id && product.counter--
+      add === -1 && product.id === id ? product.counter = 0 : add && product.id === id ? product.counter++ : !add && product.id === id && product.counter--
       return product
     }))
     console.log(products);
@@ -50,8 +50,10 @@ function App() {
   return (
     <div className="App">
       <Header categories={categories} selectVal={selectVal} sortAfterSelect={sortAfterSelect} />
-      <Cart cartList={cartList} updateCart={updateCart} />
-      <Products products={productfilterd} updateCart={updateCart} />
+      <div className='shopping-aria'>
+        <Cart cartList={cartList} updateCart={updateCart} />
+        <Products products={productfilterd} updateCart={updateCart} />
+      </div>
     </div>
   );
 }
