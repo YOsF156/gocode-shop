@@ -11,7 +11,7 @@ export default function CartItem({ price, counter, image, title, id, updateCart 
         </div>
         <div className="cart-info" title={title}>
             <label > {title.split(" ")[0]}  </label>
-            <label> {price * counter}$ </label>
+            <label> {(price * counter).toFixed(2)}$ </label>
             <Button onClick={() => updateCart(-1, id)}>🗑</Button>
         </div>
     </div>)
